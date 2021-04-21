@@ -14,7 +14,6 @@ namespace MapsData.Controllers
     public class NgLocationDataController : ControllerBase
     {
         private readonly MapsDataContext _context;
-        private readonly DataService _dataService;
 
         public NgLocationDataController(MapsDataContext context)
         {

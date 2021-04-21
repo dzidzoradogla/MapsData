@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MapsData\Controllers\NgLocationDataController.cs" />
+    <Compile Remove="MapsData\Controllers\NgLocationMapsController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\" />
   </ItemGroup>
 

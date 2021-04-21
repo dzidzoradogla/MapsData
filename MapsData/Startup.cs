@@ -63,10 +63,7 @@ namespace MapsData
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=LocationData}/{action=Index}");
-                endpoints.MapControllerRoute(
-                    name: "maps",
-                    pattern: "{controller=LocationMaps}/{action=Index}");
+                    pattern: "{controller=Home}/{action=Index}");
             });
         }
     }
