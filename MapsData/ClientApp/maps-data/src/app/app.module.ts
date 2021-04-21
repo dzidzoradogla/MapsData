@@ -8,6 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LocationDataComponent } from './location-data/location-data.component';
 import { LocationMapsComponent } from './location-maps/location-maps.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -19,9 +22,11 @@ import { LocationMapsComponent } from './location-maps/location-maps.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

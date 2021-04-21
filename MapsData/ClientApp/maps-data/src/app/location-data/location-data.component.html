@@ -1,1 +1,51 @@
 <p>location-data works!</p>
+<span *ngFor="let d of data$">
+  {{d.locationId}}
+</span>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="Location">
+      <th mat-header-cell *matHeaderCellDef> Location </th>
+      <td mat-cell *matCellDef="let d"> {{d.locationId}}             
+    </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="Time">
+      <th mat-header-cell *matHeaderCellDef> Time </th>
+      <td mat-cell *matCellDef="let d"> {{d.time}}  </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Atmospheric Pressure">
+      <th mat-header-cell *matHeaderCellDef> Atmospheric Pressure </th>
+      <td mat-cell *matCellDef="let d">  {{d.atmosphericPressure}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Gust">
+      <th mat-header-cell *matHeaderCellDef> Gust </th>
+      <td mat-cell *matCellDef="let d"> {{d.gust}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="Wind Speed">
+        <th mat-header-cell *matHeaderCellDef> Wind Speed </th>
+        <td mat-cell *matCellDef="let d"> {{d.windSpeed}}  </td>
+      </ng-container>
+
+       <!-- Symbol Column -->
+    <ng-container matColumnDef="Wind Direction">
+        <th mat-header-cell *matHeaderCellDef> Wind Direction </th>
+        <td mat-cell *matCellDef="let d"> {{d.windDirection}}</td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+ 

@@ -9,11 +9,8 @@ import { HttpClient } from '@angular/common/http';
 
 export class AppComponent implements OnInit {
   constructor(private _httpService: HttpClient) { }
-  accessPointUrl: string = 'https://localhost:44391/api/ngLocationMaps';
+  accessPointUrl: string = 'https://localhost:44311/api/ngLocationMaps';
   apiValues: string[] = [];
-  ngOnInit() {
-    this._httpService.get(this.accessPointUrl).subscribe(values => {
-      this.apiValues = values as string[];
-    });
+  ngOnInit() {    
   }
 }

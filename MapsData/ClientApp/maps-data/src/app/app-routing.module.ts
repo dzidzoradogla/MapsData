@@ -4,17 +4,14 @@ import { LocationDataComponent } from './location-data/location-data.component';
 import { LocationMapsComponent } from './location-maps/location-maps.component';
 
 const routes: Routes = [
-  // { 
-  //   path: '',   
-  //   redirectTo: '/data',
-  // },{
-  //   path: 'data',
-  //   component: LocationDataComponent
-  // },
-  // {
-  //   path: 'maps',
-  //   component: LocationMapsComponent
-  // }
+ {
+    path: 'data',
+    component: LocationDataComponent
+  },
+  {
+    path: 'maps',
+    component: LocationMapsComponent
+  }
 ]
 
 @NgModule({

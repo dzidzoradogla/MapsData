@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-location-maps',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./location-maps.component.css']
 })
 export class LocationMapsComponent implements OnInit {
+  maps$: Object;
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.getAllMaps();
   }
 
+  getAllMaps(){
+    this.dataService.getMaps().subscribe(
+      data => this.maps$ = data);
+  }
 }

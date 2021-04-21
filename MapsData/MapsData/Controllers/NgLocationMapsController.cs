@@ -45,7 +45,7 @@ namespace MapsData.Controllers
                 }
 
                 var locationMap = _context.LocationMap
-                    .FirstOrDefaultAsync(m => m.LocationId == id);
+                    .FirstOrDefault(m => m.LocationId == id);
                 if (locationMap == null)
                 {
                     return NotFound();
