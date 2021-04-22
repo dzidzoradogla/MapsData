@@ -1,0 +1,21 @@
+USE [MapsData]
+GO
+
+/****** Object:  Table [dbo].[locationMap]    Script Date: 4/21/2021 10:53:38 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[locationMap](
+	[locationID] [nvarchar](50) NOT NULL,
+	[locationName] [nvarchar](200) NOT NULL,
+ CONSTRAINT [PK_locationMap] PRIMARY KEY CLUSTERED 
+(
+	[locationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+

@@ -26,7 +26,6 @@ namespace MapsData.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=DZIDZOR-LAPTOP\\MSSQLSERVER01;Database=MapsData;Integrated Security=True;");
             }
         }
@@ -39,9 +38,9 @@ namespace MapsData.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.AtmosphericPressure).HasMaxLength(50);
+                entity.Property(e => e.AtmosphericPressure);
 
-                entity.Property(e => e.Gust).HasMaxLength(50);
+                entity.Property(e => e.Gust);
 
                 entity.Property(e => e.LocationId)
                     .IsRequired()
@@ -52,9 +51,9 @@ namespace MapsData.Models
                     .HasColumnName("time")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.WindDirection).HasMaxLength(50);
+                entity.Property(e => e.WindDirection);
 
-                entity.Property(e => e.WindSpeed).HasMaxLength(50);
+                entity.Property(e => e.WindSpeed);
             });
 
             modelBuilder.Entity<LocationMap>(entity =>

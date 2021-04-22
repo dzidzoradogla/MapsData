@@ -25,22 +25,22 @@
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["LocationNameParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model => model[0].LocationName)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocationIdParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].LocationId)</a>
+                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model[0].LocationId)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].LocationId)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["TimeParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].Time)</a>
+                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model[0].Time)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].Time)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["AtmosphericPressureParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].AtmosphericPressure)</a>
+                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model[0].AtmosphericPressure)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].AtmosphericPressure)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["WindDirectionParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].WindDirection)</a>
+                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model[0].WindDirection)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].WindDirection)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["WindSpeedParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].WindSpeed)</a>
+                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model[0].WindSpeed)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].WindSpeed)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["GustParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].Gust)</a>
+                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model[0].Gust)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].Gust)</a>
             </th>
             <th></th>
         </tr>

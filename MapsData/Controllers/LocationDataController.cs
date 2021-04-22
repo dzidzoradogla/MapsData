@@ -24,101 +24,66 @@ namespace MapsData.Controllers
             string searchString,
             int? pageNumber)
         {
-
-            ViewData["CurrentSort"] = sortOrder;
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "LocationName" : "";
-            ViewData["DateSortParm"] = sortOrder == "Date" ? "Time" : "Date";
-            //ViewData["LocationNameParam"]
-            //ViewData["LocationIdParam"]
-            //ViewData["TimeParam"]
-            //ViewData["AtmosphericPressureParam"]
-            //ViewData["WindDirectionParam"]
-            //ViewData["WindSpeedParam"]
-            //ViewData["GustParam"]
-
-            if (searchString != null)
+            IEnumerable<LocationDataDTO> LocationDataWithName = null;
+            
+                int pageSize = 10;
+            try
             {
-                pageNumber = 1;
+                ViewData["CurrentSort"] = sortOrder;
+
+                ViewData["LocationNameParam"] = String.IsNullOrEmpty(sortOrder) ? "LocationName" : "";
+                ViewData["DateSortParm"] = sortOrder == "Time" ? "Time" : "";
+                ViewData["LocationIdParam"] = sortOrder == "LocationId" ? "LocationId" : "";
+                ViewData["TimeParam"] = sortOrder == "LocationId" ? "LocationId" : "";
+                ViewData["AtmosphericPressureParam"] = sortOrder == "AtmosphericPressure" ? "AtmosphericPressure" : "";
+                ViewData["WindDirectionParam"] = sortOrder == "WindDirection" ? "WindDirection" : "";
+                ViewData["WindSpeedParam"] = sortOrder == "WindSpeed" ? "WindSpeed" : "";
+                ViewData["GustParam"] = sortOrder == "Gust" ? "Gust" : "";
+
+              
+
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                var locationData = _context.LocationData
+                    .FromSqlRaw("dbo. Usp_GetLocationDataByPage @PageNo={0}, @PageSize={1}, @SortOrder={2}, @SearchString={3}",
+                        pageNumber ?? 1,
+                        pageSize,
+                        sortOrder,
+                        searchString).ToList();
+
+                LocationDataWithName = from data in locationData
+                                       join map in _context.LocationMap
+                                       on data.LocationId equals map.LocationId
+                                       select new LocationDataDTO
+                                       {
+                                           LocationName = map.LocationName,
+                                           AtmosphericPressure = data.AtmosphericPressure,
+                                           Gust = data.Gust,
+                                           Time = data.Time.ToString("dd-MMMM-yyyy"),
+                                           WindDirection = data.WindDirection,
+                                           WindSpeed = data.WindSpeed,
+                                           LocationId = data.LocationId,
+                                           Id = data.Id
+                                       };
+
+                ViewData["CurrentFilter"] = searchString;              
+                
+                return View(PaginatedList<LocationDataDTO>.Create(LocationDataWithName.ToList(), pageNumber ?? 1, pageSize));
             }
-            else
+            catch(Exception e)
             {
-                searchString = currentFilter;
+                // log error
+                //return empty paginated page
+                return View(PaginatedList<LocationDataDTO>.Create(LocationDataWithName.ToList(), pageNumber ?? 1, pageSize));
             }
-
-            ViewData["CurrentFilter"] = searchString;
-
-            // Join with Maps table to obtain location Name 
-            var LocationData = from data in _context.LocationData
-                               join map in _context.LocationMap
-                               on data.LocationId equals map.LocationId
-                               select new LocationDataDTO
-                               {
-                                   LocationName = map.LocationName,
-                                   AtmosphericPressure = data.AtmosphericPressure,
-                                   Gust = data.Gust,
-                                   Time = data.Time.ToString("dd-MMMM-yyyy"),
-                                   WindDirection = data.WindDirection,
-                                   WindSpeed = data.WindSpeed,
-                                   LocationId = data.LocationId,
-                                   Id = data.Id
-                               };
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                LocationData = LocationData.Where(d => d.LocationName.Contains(searchString)
-                                       || d.LocationId.Contains(searchString));
-            }
-            switch (sortOrder)
-            {
-                case "LocationId":
-                    LocationData = LocationData.OrderByDescending(d => d.LocationId);
-                    break;
-                case "LocationName":
-                    LocationData = LocationData.OrderBy(d => d.LocationName);
-                    break;
-                case "Time":
-                    LocationData = LocationData.OrderByDescending(d => d.Time);
-                    break;
-                case "Gust":
-                    LocationData = LocationData.OrderByDescending(d => d.Gust);
-                    break;
-                case "WindDirection":
-                    LocationData = LocationData.OrderByDescending(d => d.WindDirection);
-                    break;
-                case "AtmosphericPressure":
-                    LocationData = LocationData.OrderByDescending(d => d.AtmosphericPressure);
-                    break;
-                case "WindSpeed":
-                    LocationData = LocationData.OrderByDescending(d => d.WindSpeed);
-                    break;
-                default:
-                    LocationData = LocationData.OrderBy(d => d.LocationName);
-                    break;
-            }
-
-            int pageSize = 10;
-            var locationData =_context.LocationData
-                .FromSqlRaw("dbo. Usp_GetLocationDataByPage @PageNo={0}, @PageSize={1}",
-                    pageNumber ?? 1,
-                    pageSize)
-                .ToList();
-
-            // Join with Maps table to obtain location Name 
-            var LocationDataWithName = from data in locationData
-                               join map in _context.LocationMap
-                               on data.LocationId equals map.LocationId
-                               select new LocationDataDTO
-                               {
-                                   LocationName = map.LocationName,
-                                   AtmosphericPressure = data.AtmosphericPressure ?? "NULL",
-                                   Gust = data.Gust ?? "NULL",
-                                   Time = data.Time.ToString("dd-MMMM-yyyy"),
-                                   WindDirection = data.WindDirection ?? "NULL",
-                                   WindSpeed = data.WindSpeed ?? "NULL",
-                                   LocationId = data.LocationId,
-                                   Id = data.Id
-                               };
-            return View(PaginatedList<LocationDataDTO>.Create(LocationDataWithName.ToList(), pageNumber ?? 1, pageSize));
+            
 
         }
 
