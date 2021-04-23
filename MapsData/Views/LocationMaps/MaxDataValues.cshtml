@@ -1,7 +1,7 @@
-﻿@model MapsData.DataService.PaginatedList<MapsData.Models.LocationDataDTO>
+﻿@*@model MapsData.Models.LocationDataDTO
 
 @{
-    ViewData["Title"] = "Location Data";
+    ViewData["Title"] = "Location Data Insights";
 }
 
 <h1>Index</h1>
@@ -22,13 +22,13 @@
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["LocationNameParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model => model[0].LocationName)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model[0].LocationId)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].LocationId)</a>
+                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model.LocationId)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].LocationId)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model[0].Time)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].Time)</a>
+                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model.Time)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].Time)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model[0].AtmosphericPressure)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].AtmosphericPressure)</a>
+                <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model.AtmosphericPressure)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].AtmosphericPressure)</a>
             </th>
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@Html.DisplayNameFor(model =>  model[0].WindDirection)" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>  model[0].WindDirection)</a>
@@ -97,4 +97,4 @@
 
 <p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
