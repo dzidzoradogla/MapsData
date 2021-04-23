@@ -26,7 +26,7 @@ namespace MapsData.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DZIDZOR-LAPTOP\\MSSQLSERVER01;Database=MapsData;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Server=****;Database=****;Integrated Security=True;");
             }
         }
 
